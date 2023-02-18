@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{ count }}</p>
+        <button v-on:click="add">+1</button>
+        <button v-on:click="add2(2, $event)">+2</button>
+        <button @click="sub()">-1</button>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                count: 0
+            },
+            methods: {      // methods 作用就是定义事件处理函数
+                add: function (events) {
+                    this.count += 1;
+                    events.target.style.backgroundColor = this.count % 2 == 0 ? 'pink' : 'white';
+                },
+                add2(num, events) {    // 传参
+                    this.count += num;
+                    events.target.style.backgroundColor = this.count % 2 == 0 ? 'yellow' : 'blue';
+                },
+                sub() {    // 函数简写方式
+                    this.count -= 1;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

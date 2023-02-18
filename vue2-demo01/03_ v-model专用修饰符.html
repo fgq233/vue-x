@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input v-model.number="num1">+
+        <input v-model.number="num2">=
+        {{num1 + num2}}
+        <br>
+        <input v-model.trim="name">
+        <br>
+        <input v-model.lazy="msg">
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: { num1: 0, num2: 0, name: '', msg: '' }
+        })
+    </script>
+</body>
+
+</html>
