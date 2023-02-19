@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input v-model="msg">
+        <input v-model="msg2">
+        <input v-model="info.name">
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'vue',
+                msg2: 'js',
+                info: { name: 'fgq' }
+            },
+            watch: {
+                // 方法格式侦听器
+                msg: function (newVal, oldVal) {
+                    console.log(newVal, oldVal);
+                },
+                // 对象格式侦听器
+                msg2: {
+                    handler(newVal, oldVal) {
+                        console.log(newVal, oldVal);
+                    },
+                    immediate: true
+                },
+                info: {
+                    handler(newVal, oldVal) {
+                        console.log(newVal, oldVal);
+                    },
+                    deep: true
+                }
+            },
+        })
+
+        var unwatch = app.$watch('info', function (newVal, oldVal) {
+            console.log(newVal, oldVal);
+        }, {
+            immediate: true,
+            deep: true
+        });
+        unwatch();
+    </script>
+</body>
+
+</html>

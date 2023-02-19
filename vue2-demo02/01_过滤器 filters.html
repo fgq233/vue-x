@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p :title="msg | capitalize">{{msg}}</p>
+        <p>{{msg | capitalize2}}</p>
+        <p>{{msg | fun(666)}}</p>
+    </div>
+
+    <script>
+        Vue.filter('capitalize2', function (value) {
+            if (!value) {
+                return ''
+            }
+            value = value.toString();
+            return value.toUpperCase();
+        });
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: 'vue',
+            },
+            filters: {
+                capitalize: function (value) {
+                    if (!value) {
+                        return ''
+                    }
+                    value = value.toString();
+                    return value.charAt(0).toUpperCase() + value.slice(1);
+                },
+                fun: function (value, arg) {
+                    if (!value) {
+                        return ''
+                    }
+                    value = value.toString();
+                    return value.toString() + arg;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
