@@ -6,6 +6,7 @@ import Test from './components/Test.vue'
 
 Vue.config.productionTip = false
 
+
 // 创建 Vue 的实例对象
 new Vue({
   render: h => h(Test),
