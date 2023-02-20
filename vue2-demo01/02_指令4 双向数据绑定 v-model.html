@@ -12,15 +12,48 @@
     <div id="app">
         <!-- 表单有submit事件，阻止表单默认行为，触发自定义方法 -->
         <form @submit.prevent="commit">
+
+            <!-- 单行文本 -->
             <p>请输入内容：{{ msg }}</p>
             <input v-model="msg">
 
+            <!-- 多行文本 -->
+            <textarea v-model="msg"></textarea>
+
+            <!-- 选择框 -->
             <select v-model="city">
+                <option disabled value="">请选择</option>
                 <option value="1">上海</option>
                 <option value="2">北京</option>
                 <option value="3">深圳</option>
             </select>
-            
+            <span>{{ city }}</span>
+
+            <!-- 选择框(多选) -->
+            <select v-model="citys" multiple>
+                <option disabled value="">请选择</option>
+                <option value="1">上海</option>
+                <option value="2">北京</option>
+                <option value="3">深圳</option>
+            </select>
+            <span>{{ citys }}</span>
+
+
+            <!-- 单个复选框，绑定布尔值 -->
+            <input type="checkbox" id="checkbox" v-model="checked"><label for="checkbox">{{ checked }}</label>
+
+            <!-- 多个复选框，绑定到同一个数组 -->
+            <input type="checkbox" id="c1" value="1" v-model="checkedIds"><label for="c1">A</label>
+            <input type="checkbox" id="c2" value="2" v-model="checkedIds"><label for="c2">B</label>
+            <input type="checkbox" id="c3" value="3" v-model="checkedIds"><label for="c3">C</label>
+            <span> {{ checkedIds }}</span>
+
+            <!-- 单选按钮 -->
+            <input type="radio" id="r1" value="One" v-model="picked"><label for="r1">One</label>
+            <input type="radio" id="r1" value="Two" v-model="picked"><label for="r2">Two</label>
+            <span> {{ picked }}</span>
+
+
             <!-- type="submit" 按钮点击后会触发表单submit事件 -->
             <input type="submit" value="提交">
         </form>
@@ -29,7 +62,7 @@
     <script>
         var app = new Vue({
             el: '#app',
-            data: { msg: '', city: '' },
+            data: { msg: '', city: '', citys: [], checked: false, checkedIds: [], picked: '' },
             methods: {
                 commit() {
                     console.log(this.msg);

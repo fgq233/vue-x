@@ -9,23 +9,27 @@
 
   <body>
     <div id="app">
-      <ol>
-        <!-- 官方推荐：用到循环指令，需要绑定一个key属性，值要在循环中唯一，为字符串或数字类型 -->
-        <li v-for="todo in todos" :key="todo.id">{{ todo.text }}</li>
-      </ol>
+      <ul>
+        <li v-for="todo in todos">{{ todo.text }}</li>
+      </ul>
 
-      <table>
-        <thead>
-          <th>序号</th>
-          <th>姓名</th>
-        </thead>
-        <tbody>
-          <tr v-for="(item, idx) in girls" :id="'tr-' + idx" :title="item.name">
-            <td>{{ idx + 1 }}</td>
-            <td>{{ item.name}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <ul>
+        <li v-for="(todo, idx) in todos" :key="todo.id" :attr="'li' + idx" :title="todo.text">
+          {{ todo.text }}
+        </li>
+      </ul>
+
+
+      <!-- 遍历对象 -->
+      <ul>
+        <li v-for="val in obj">{{ val }}</li>
+      </ul>
+      <ul>
+        <li v-for="(val, key) in obj">{{ key }} : {{ val }}</li>
+      </ul>
+      <ul>
+        <li v-for="(val, key, index) in obj">{{ index }} 、 {{ key }} : {{ val }}</li>
+      </ul>
     </div>
 
     <script>
@@ -37,7 +41,7 @@
             { id: 2, text: "学习 Vue" },
             { id: 3, text: "整个牛项目" },
           ],
-          girls: [{ name: "小龙女" }, { name: "黄蓉" }, { name: "赵敏" }],
+          obj: { name: "小龙女" , time: "2022" , age: "18" }
         },
       })
     </script>
